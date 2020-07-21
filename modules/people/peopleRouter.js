@@ -12,14 +12,31 @@ router.get('/', (req, res) => {
 });
 router.post('/', express.json(), (req, res) => {
   const { name } = req.body;
-  console.log(name);
+
   if (!name) return res.status(400).json({ error: 'You must include a valid name' });
+
   People.enqueue(name);
   return res.status(201).json({ name: name });
 });
 router.delete('/', json, (req, res) => {
   // Remove a person from the queue
-  People.dequeue();
+  let temp = People.get();
+  if (temp[0] === 'Randy Lahey' || temp[0] === 'Trevor Cory' || temp[0] === 'Jim Lahey') {
+    People.dequeueLoop();
+  }
+  else {
+    People.dequeue();
+  }
+
+
+
+
+
+
+
+
+
+
   const remaining = People.get();
 
   res.json({ remaining });

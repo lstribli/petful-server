@@ -18,12 +18,17 @@ module.exports = {
 
   enqueue(person) {
     // Add a person to the queue.
+
     return peopleQueue.enqueue(person);
+  },
+
+  dequeueLoop() {
+    // Remove a person from the queue.
+    return peopleQueue.enqueue(peopleQueue.dequeue());
   },
 
   dequeue() {
     // Remove a person from the queue.
-    return peopleQueue.enqueue(peopleQueue.dequeue());
+    return peopleQueue.dequeue();
   }
-
 };
